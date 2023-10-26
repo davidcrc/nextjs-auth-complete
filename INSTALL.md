@@ -34,3 +34,27 @@ npx shadcn-ui@latest add input
 ```bash
 npx shadcn-ui@latest add form
 ```
+
+# Add Prisma
+
+```bash
+yarn add -D prisma
+```
+
+```bash
+npx prisma init
+```
+
+```bash
+npx prisma migrate dev --name init
+```
+
+# Add bcrypt
+
+```bash
+yarn add bcrypt
+```
+
+```bash
+yarn add -D @types/bcrypt
+```
