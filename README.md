@@ -2,6 +2,16 @@ NextAuth with user/pass and google
 
 - signup with API
 - signin with nextAuth
+- signin with Google (same)
+- signup with Google (same)
+
+## For check implementation credentials check
+
+- nextauth-sign-in branch
+
+## For check implementation google check
+
+- nextauth-google branch
 
 ## Getting Started
 
@@ -37,3 +47,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+![alt text for screen readers](/resources/Screenshot_2023-10-26_1.png "Screen1")
+
+![alt text for screen readers](/resources/Screenshot_2023-10-26_2.png "Screen2")
+
+![alt text for screen readers](/resources/Screenshot_2023-10-26_3.png "Screen3")
+
+![alt text for screen readers](/resources/Screenshot_2023-10-26_4.png "Screen4")
+
+![alt text for screen readers](/resources/Screenshot_2023-10-26_5.png "Screen5")
