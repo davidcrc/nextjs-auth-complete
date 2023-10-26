@@ -35,6 +35,12 @@ npx shadcn-ui@latest add input
 npx shadcn-ui@latest add form
 ```
 
+<!-- new -->
+
+```bash
+npx shadcn-ui@latest add toast
+```
+
 # Add Prisma
 
 ```bash
@@ -58,3 +64,20 @@ yarn add bcrypt
 ```bash
 yarn add -D @types/bcrypt
 ```
+
+# Add NextAuthJs
+
+```bash
+yarn add next-auth
+```
+
+- For prisma add:
+
+```bash
+yarn add @next-auth/prisma-adapter
+
+```
+
+- check for typescripts
+
+https://next-auth.js.org/getting-started/typescript

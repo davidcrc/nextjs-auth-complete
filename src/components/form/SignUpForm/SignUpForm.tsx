@@ -16,26 +16,16 @@ import { Button } from "../../ui/button";
 import Link from "next/link";
 import GoogleSignInButton from "../../GoogleSignInButton";
 import { useRouter } from "next/navigation";
+import { FormSchema } from "./hookform";
+import { useToast } from "../../ui/use-toast";
 
-const FormSchema = z
-  .object({
-    username: z.string().min(1, "Username is required").max(100),
-    email: z.string().min(1, "Email is required").email("Invalid email"),
-    password: z
-      .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have than 8 characters"),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Password do not match",
-  });
+type SignUpType = z.infer<typeof FormSchema>;
 
 const SignUpForm = () => {
   const router = useRouter();
+  const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof FormSchema>>({
+  const form = useForm<SignUpType>({
     resolver: zodResolver(FormSchema),
     mode: "onBlur",
     defaultValues: {
@@ -46,7 +36,7 @@ const SignUpForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (values: SignUpType) => {
     console.log(values);
 
     const response = await fetch("/api/user", {
@@ -65,6 +55,11 @@ const SignUpForm = () => {
       router.push("/sign-in");
     } else {
       console.error("Registration failed");
+      toast({
+        title: "Error",
+        description: "Registration failed",
+        variant: "destructive",
+      });
     }
   };
 

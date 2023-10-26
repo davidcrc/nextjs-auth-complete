@@ -14,18 +14,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import Link from "next/link";
-import GoogleSignInButton from "../../GoogleSignInButton";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
+import { signIn } from "next-auth/react";
+import { FormSchema } from "./hookform";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
-const FormSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email"),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(8, "Password must have than 8 characters"),
-});
+type SignInType = z.infer<typeof FormSchema>;
 
 const SignInForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const form = useForm<SignInType>({
     resolver: zodResolver(FormSchema),
     mode: "onBlur",
     defaultValues: {
@@ -34,8 +35,27 @@ const SignInForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (values: SignInType) => {
     console.log(values);
+
+    const signInData = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    });
+
+    if (signInData?.error) {
+      console.log("signInData", signInData.error);
+
+      toast({
+        title: "Error",
+        description: "Ops!! Something went wrong",
+        variant: "destructive",
+      });
+    } else {
+      router.refresh();
+      router.push("/admin");
+    }
   };
 
   return (
