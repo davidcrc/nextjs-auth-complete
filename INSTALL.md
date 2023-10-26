@@ -26,3 +26,11 @@ npx shadcn-ui@latest init
 ```bash
 npx shadcn-ui@latest add button
 ```
+
+```bash
+npx shadcn-ui@latest add input
+```
+
+```bash
+npx shadcn-ui@latest add form
+```
