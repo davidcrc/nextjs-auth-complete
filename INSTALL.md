@@ -81,3 +81,34 @@ yarn add @next-auth/prisma-adapter
 - check for typescripts
 
 https://next-auth.js.org/getting-started/typescript
+
+<!--  -->
+
+## For google Auth modifi schema.prisma
+
+- https://authjs.dev/reference/adapter/prisma
+
+```prisma
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+
+  username      String?   @unique
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+// others
+```
+
+```bash
+npx prisma migrate dev
+
+```
